@@ -52,11 +52,8 @@ public class LinkedList {
         list.insert(1);
         list.insert(2);
         list.insert(3);
-
         list.display();
-        System.out.println("---------------------------------");
         list.delete(2);
-
         list.display();
     }
 }
