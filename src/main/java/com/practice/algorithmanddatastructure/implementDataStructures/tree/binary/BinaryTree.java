@@ -49,4 +49,15 @@ public class BinaryTree {
         return node;
     }
 
+    Node search(Node root, int key) {
+        if (root == null || root.key == key)
+            return root;
+
+        if (key < root.key)
+            return search(root.left, key);
+
+        return search(root.right, key);
+    }
+
+
 }
