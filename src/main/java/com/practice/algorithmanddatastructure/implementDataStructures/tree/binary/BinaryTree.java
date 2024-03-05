@@ -59,5 +59,4 @@ public class BinaryTree {
         return search(root.right, key);
     }
 
-
 }

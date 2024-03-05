@@ -1,30 +1,30 @@
 package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree;
 
 public class AVLTree {
-    Node root;
-
-    Node search(Node root, int key) {
-        if (root == null || root.key == key) {
+    //search
+    public Node search(Node root, int key) {
+        if (root.key == key || root == null) {
             return root;
         }
         if (key < root.key) {
             return search(root.left, key);
         }
+
         return search(root.right, key);
     }
 
-    public int height(Node node) {
-        if (node == null) {
-            return 0;
-        }
-        return node.height;
+    private int height(Node node) {
+        return node != null ? node.height : -1;
     }
 
-    int balanceFactor(Node node) {
-        if (node == null)
-            return 0;
-        return height(node.left) - height(node.right);
+    //max height of both children+1
+    private void updateHeight(Node node) {
+        int leftOfNodeHeight = height(node.left);
+        int rightOfNodeHeight = height(node.right);
+        node.height = Math.max(leftOfNodeHeight, rightOfNodeHeight) + 1;
     }
+
+    //get balance factor
 
     public int getBalance(Node node) {
         if (node == null) {
@@ -33,66 +33,140 @@ public class AVLTree {
         return height(node.left) - height(node.right);
     }
 
-    public Node leftRotate(Node root) {
-        Node rightChildOfRoot = root.right;
-        Node leftChildOfRightChildOfRoot = rightChildOfRoot.left;
+    //rotate left:returns new root
+    public Node rotateLeft(Node root) {
+        Node rightOfRoot = root.right;
+        Node leftOfRight = root.right.left;
 
-        rightChildOfRoot.left = root;
-        root.right = leftChildOfRightChildOfRoot;
+        rightOfRoot.left = root;
+        root.right = leftOfRight;
 
-        root.height = Math.max(height(root.left), height(root.right)) + 1;
-        rightChildOfRoot.height = Math.max(height(rightChildOfRoot.left), height(rightChildOfRoot.right)) + 1;
+        updateHeight(root);
+        updateHeight(rightOfRoot);
 
-        return rightChildOfRoot;
+        return rightOfRoot;
     }
 
-    public Node rightRotate(Node root) {
-        Node leftChildOfRoot = root.left;
-        Node rightChildOfLeftChildOfRoot = leftChildOfRoot.right;
+    //rotate right
 
-        leftChildOfRoot.right = root;
-        root.left = rightChildOfLeftChildOfRoot;
+    public Node rotateRight(Node root) {
+        Node leftOfRoot = root.left;
+        Node rightOfLeft = root.left.right;
 
-        root.height = Math.max(height(root.left), height(root.right)) + 1;
-        leftChildOfRoot.height = Math.max(height(leftChildOfRoot.left), height(leftChildOfRoot.right)) + 1;
+        leftOfRoot.right = root;
+        root.left = rightOfLeft;
 
-        return leftChildOfRoot;
+        updateHeight(root);
+        updateHeight(leftOfRoot);
+
+        return leftOfRoot;
     }
 
-    public Node insert(Node node, int key) {
-        //if there is no root
-        if (node == null) {
+    //insert
+    public Node insert(Node root, int key) {
+        if (root == null) {
             return new Node(key);
         }
-        if (key < node.key) {
-            node.left = insert(node.left, key);
-        } else if (key > node.key) {
-            node.right = insert(node.right, key);
+
+        if (key < root.key) {
+            root.left = insert(root.left, key);
+        } else if (key > root.key) {
+            root.right = insert(root.right, key);
         } else {
-            return node;
-        }
-        //height of a node is 1 plus the maximum height of its children.
-        node.height = 1 + Math.max(height(node.left), height(node.right));
-
-        int balanceFactor = balanceFactor(node);
-
-        if (balanceFactor > 1 && key < node.left.key) {
-            return rightRotate(node);
+            return root;
         }
 
-        if (balanceFactor < -1 && key > node.right.key) {
-            return leftRotate(node);
+        int balanceFactor = getBalance(root);
+        //right
+        if (balanceFactor > 1 && key < root.left.key) {
+            return rotateRight(root);
+        }
+        //left-right
+        if (balanceFactor > 1 && key > root.left.key) {
+            root.left = rotateLeft(root.left);
+            return rotateRight(root);
+        }
+        //left
+        if (balanceFactor < -1 && key > root.right.key) {
+            return rotateLeft(root);
+        }
+        //right-left
+        if (balanceFactor < -1 && key < root.right.key) {
+            root.right = rotateRight(root.right);
+            return rotateLeft(root);
         }
 
-        if (balanceFactor > 1 && key > node.left.key) {
-            node.left = leftRotate(node.left);
-            return rightRotate(node);
+        updateHeight(root);
+        return root;
+    }
+
+    //delete
+    public Node delete(Node root, int key) {
+        if (root == null) {
+            return root;
+        }
+        if (key < root.key) {
+            root.left = delete(root.left, key);
+        } else if (key > root.key) {
+            root.right = delete(root.right, key);
+        } else {
+            if (root.left == null || root.right == null) {
+                // replace the current node with its child or null.
+                Node temp;
+
+                if (root.left != null) {
+                    temp = root.left;
+                } else {
+                    temp = root.right;
+                }
+                if (temp == null) {
+                    temp = root;
+                    root = null;
+                } else {
+                    root = temp;
+                }
+            } else {
+                //f both the left and right children exist
+                Node temp = minValueNode(root.right);
+                root.key = temp.key;
+                root.right = delete(root.right, temp.key);
+            }
+        }
+        if (root == null) {
+            return root;
         }
 
-        if (balanceFactor < -1 && key < node.right.key) {
-            node.right = rightRotate(node.right);
-            return leftRotate(node);
+        updateHeight(root);
+
+        int balanceFactor = getBalance(root);
+
+        if (balanceFactor > 1 && getBalance(root.left) >= 0) {
+            return rotateRight(root);
         }
-        return node;
+
+        if (balanceFactor > 1 && getBalance(root.left) < 0) {
+            root.left = rotateLeft(root.left);
+            return rotateRight(root);
+        }
+
+        if (balanceFactor < -1 && getBalance(root.right) <= 0) {
+            return rotateLeft(root);
+        }
+
+        if (balanceFactor < -1 && getBalance(root.right) > 0) {
+            root.right = rotateRight(root.right);
+            return rotateLeft(root);
+        }
+
+        return root;
+    }
+
+    //find the minimum value node in the right subtree
+    private Node minValueNode(Node node) {
+        Node current = node;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current;
     }
 }
