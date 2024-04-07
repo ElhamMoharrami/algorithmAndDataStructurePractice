@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree;
+package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree.avl;
 
 public class AVLTree {
     //search
@@ -75,7 +75,7 @@ public class AVLTree {
         } else {
             return root;
         }
-
+        //fix after insertion
         int balanceFactor = getBalance(root);
         //right
         if (balanceFactor > 1 && key < root.left.key) {
