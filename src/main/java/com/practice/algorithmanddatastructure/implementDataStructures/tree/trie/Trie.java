@@ -31,21 +31,15 @@ public class Trie {
     }
 
     public boolean delete(String word) {
-       return delete(root, word, 0);
+        return delete(root, word, 0);
     }
 
     private boolean delete(Node current, String word, int index) {
-        //This means we have reached the end of the word while iterating through it.
         if (index == word.length()) {
-            //we reached end of the word we were given, but is it an actual word? if it is not an actual word we
-            // wont delete it
             if (!current.getIsWord()) {
                 return false;
             }
-            //ensure that the current node will not be considered as the end of a word in the future.
             current.setIsWord(false);
-            //If there are no child nodes, it means that the current node is an appropriate place to delete the word,
-            // and the function returns true
             return current.getChildren().isEmpty();
         }
         char ch = word.charAt(index);
@@ -55,6 +49,7 @@ public class Trie {
         }
         boolean shouldDeleteCurrentNode = delete(node, word, index + 1) && !node.getIsWord();
         if (shouldDeleteCurrentNode) {
+            //current is the node before the current ch(it's parent)
             current.getChildren().remove(ch);
             return current.getChildren().isEmpty();
         }
@@ -64,16 +59,12 @@ public class Trie {
     public static void main(String[] args) {
         Trie trie = new Trie();
 
-        trie.insert("Programming");
-        trie.insert("is");
-        trie.insert("a");
-        trie.insert("and");
-        trie.insert("way");
-        trie.insert("of");
-        trie.insert("want");
-        trie.insert("life");
+        trie.insert("there");
+        trie.insert("their");
+        trie.insert("any");
+        trie.insert("answer");
+        trie.insert("bye");
 
-
-        System.out.println(trie.delete("and"));
+        System.out.println(trie.delete("any"));
     }
 }
