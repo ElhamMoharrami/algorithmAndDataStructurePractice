@@ -57,3 +57,14 @@ In programming, trees are often used to:
 + Perform operations on large datasets
 
 + Represent hierarchical relationships between data
+
+### properties of a tree
+* number of edges: if a tree has N nodes the whole tree would have N-1 number of edges
+
+* Depth of a node: length of the path from the root to that node,can also be defined as number of edges from the root to that node
+
+* Height of a node: length of the longest path from the node to a leaf node.
+
+* height of the tree: length of the longest path from the root of the tree to a leaf node
+
+* degree of a node: total number of children of that node,degree of a tree is the highest degree of a node among all the nodes in the tree
