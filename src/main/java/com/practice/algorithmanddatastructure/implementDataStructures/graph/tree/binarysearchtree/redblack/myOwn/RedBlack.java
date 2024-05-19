@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree.redblack.myOwn;
+package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binarysearchtree.redblack.myOwn;
 
 public class RedBlack {
     private static final boolean BLACK = false;

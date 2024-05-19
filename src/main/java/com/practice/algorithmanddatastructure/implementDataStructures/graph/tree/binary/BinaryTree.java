@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.tree.binary;
+package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binary;
 
 public class BinaryTree {
     // Function to create a new BST node

@@ -1,6 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree.redblack.fromGoogle;
-
-import com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree.redblack.fromGoogle.Node;
+package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binarysearchtree.redblack.fromGoogle;
 
 //src=https://www.happycoders.eu/algorithms/red-black-tree-java/
 /*

@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree.avl;
+package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binarysearchtree.avl;
 
 public class Node {
     int key;

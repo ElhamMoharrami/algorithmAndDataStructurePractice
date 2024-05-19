@@ -1,11 +1,11 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.tree.binarysearchtree.redblack.fromGoogle;
+package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binarysearchtree.redblack.myOwn;
 
 public class Node {
     int key;
-    boolean color;
+    Node parent;
     Node left;
     Node right;
-    Node parent;
+    boolean color;
 
     public Node(int key, boolean color) {
         this.key = key;
