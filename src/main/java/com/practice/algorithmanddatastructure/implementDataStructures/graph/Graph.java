@@ -57,4 +57,20 @@ public class Graph {
         }
         return visited;
     }
+
+    Set<String> depthFirstSearch(Graph graph, String root) {
+        Set<String> visited = new LinkedHashSet<>();
+        Stack<String> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            String vertex = stack.pop();
+            if (!visited.contains(vertex)) {
+                visited.add(vertex);
+                for (Vertex v : graph.getAdjVertices(vertex)) {
+                    stack.push(v.label);
+                }
+            }
+        }
+        return visited;
+    }
 }
