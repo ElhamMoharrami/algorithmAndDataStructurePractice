@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.graph;
+package com.practice.algorithmanddatastructure.implementDataStructures.treelike.graph;
 
 public class Vertex {
     String label;

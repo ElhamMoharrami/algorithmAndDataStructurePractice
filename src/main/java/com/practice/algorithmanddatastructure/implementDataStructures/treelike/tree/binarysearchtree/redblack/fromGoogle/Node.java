@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binarysearchtree.redblack.fromGoogle;
+package com.practice.algorithmanddatastructure.implementDataStructures.treelike.tree.binarysearchtree.redblack.fromGoogle;
 
 public class Node {
     int key;

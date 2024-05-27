@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binarysearchtree.avl;
+package com.practice.algorithmanddatastructure.implementDataStructures.treelike.tree.binarysearchtree.avl;
 
 public class AVLTree {
     //search

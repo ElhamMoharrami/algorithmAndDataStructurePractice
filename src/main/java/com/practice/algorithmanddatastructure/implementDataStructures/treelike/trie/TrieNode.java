@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.trie;
+package com.practice.algorithmanddatastructure.implementDataStructures.treelike.trie;
 
 import java.util.HashMap;
 

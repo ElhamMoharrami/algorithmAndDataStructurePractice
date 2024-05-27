@@ -1,4 +1,4 @@
-package com.practice.algorithmanddatastructure.implementDataStructures.graph.tree.binaryHeap;
+package com.practice.algorithmanddatastructure.implementDataStructures.treelike.tree.binaryHeap;
 
 public class MinHeap {
     // To store array of elements in heap
