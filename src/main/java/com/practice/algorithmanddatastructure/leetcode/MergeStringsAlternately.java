@@ -1,7 +1,5 @@
 package com.practice.algorithmanddatastructure.leetcode;
 
-import java.util.Arrays;
-
 public class MergeStringsAlternately {
     public static void main(String[] args) {
         merge("abc", "pqr");//expected: apbqcr
