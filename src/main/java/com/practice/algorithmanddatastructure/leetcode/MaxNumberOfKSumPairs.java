@@ -69,6 +69,7 @@ Constraints:
 
 //better solution
 /*  public int maxOperations(int[] nums, int k) {
+//The keys represent numbers encountered in the input array, while the values store the frequency of each number.
         HashMap<Integer,Integer> hm= new HashMap<>();
 		//Initialized The Counter
         int count=0;
@@ -80,6 +81,7 @@ Constraints:
             }
 			// Otherwise we add the Integer to the HashMap
             else{
+            //adds the number to the HashMap or updates its frequency if it already exists.
                 hm.put(nums[i],hm.getOrDefault(nums[i],0)+1);
             }
         }
