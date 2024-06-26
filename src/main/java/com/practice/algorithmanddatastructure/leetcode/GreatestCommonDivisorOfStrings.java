@@ -41,7 +41,6 @@ public class GreatestCommonDivisorOfStrings {
         }
 
     }
-
     public static void check(char[] result, char[] strArr) {
         int j = 0;
         for (int i = 0; i < strArr.length; i++) {
@@ -82,6 +81,7 @@ of users with Java
 
 /*better solution*/
 
+/*
 class Solution {
     int gcd(int n, int m) {
         while (m != 0) {
@@ -99,4 +99,4 @@ class Solution {
         }
         return "";
     }
-}
+}*/
