@@ -8,7 +8,6 @@ public class MaxNumberOfVowelsInASubstringOfAGivenLength {
         System.out.println(maxVowels("tryhard", 4));//1
         System.out.println(maxVowels("weallloveyou", 7));//4
     }
-
     public static int maxVowels(String s, int k) {
         int window = 0;
         int maxVowels = 0;
