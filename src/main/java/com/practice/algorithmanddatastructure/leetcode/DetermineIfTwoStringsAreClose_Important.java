@@ -11,33 +11,32 @@ public class DetermineIfTwoStringsAreClose_Important {
     }
 
     public static boolean closeStrings(String word1, String word2) {
-        if(word1.length() != word2.length())
-            return false;
+        int[] freq1 = new int[26];
+        int[] freq2 = new int[26];
 
-        //create frequency map for corresponding words
-        int[] freqMap1 = new int[26];
-        int[] freqMap2 = new int[26];
+        for (char ch : word1.toCharArray()) {
+            freq1[ch - 'a']++;
+        }
 
-        //fill the maps with values
-        word1.chars().forEach(i->freqMap1[i - 97]++);
-        word2.chars().forEach(i->freqMap2[i - 97]++);
+        for (char ch : word2.toCharArray()) {
+            freq2[ch - 'a']++;
+        }
 
-        //check if there exists a character that exisit in one word and does not exist in the other word
-        for(int i = 0 ; i < 26 ; i++)
-            if(freqMap1[i] != 0 || freqMap2[i] != 0)
-                if(freqMap1[i] == 0 || freqMap2[i] == 0)
-                    return false;
-
-        //sort both maps to compare values
-        Arrays.sort(freqMap1);
-        Arrays.sort(freqMap2);
-
-        //check if any value is different
-        for(int i = 0 ; i < 26 ; i++)
-            if(freqMap1[i] != freqMap2[i])
+        for (int i = 0; i < 26; i++) {
+            if ((freq1[i] == 0 && freq2[i] != 0) || (freq1[i] != 0 && freq2[i] == 0)) {
                 return false;
+            }
+        }
+
+        Arrays.sort(freq1);
+        Arrays.sort(freq2);
+
+        for (int i = 0; i < 26; i++) {
+            if (freq1[i] != freq2[i]) {
+                return false;
+            }
+        }
 
         return true;
-
     }
 }
